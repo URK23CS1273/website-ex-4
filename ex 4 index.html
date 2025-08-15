@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoundMax Store</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('store-bg.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+      z-index: 999;
+    }
+    .navbar img { height: 40px; }
+    .navbar .title {
+      color: #00ffcc;
+      font-size: 24px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+    }
+    .nav-links li a:hover {
+      background-color: #00ffcc;
+      color: black;
+    }
+
+    .landing-text {
+      margin-top: 120px;
+      padding: 40px;
+      color: #fff;
+      max-width: 600px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      margin-left: 50px;
+    }
+    .landing-text h1 { font-size: 36px; color: #99ffee; margin-bottom: 15px; }
+
+    .login-form {
+      position: absolute;
+      top: 140px;
+      right: 50px;
+      width: 330px;
+      padding: 25px;
+      background-color: rgba(0, 0, 0, 0.78);
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9);
+    }
+    .login-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #99ffee;
+    }
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .login-form input:focus {
+      background-color: rgba(255, 255, 255, 0.2);
+      outline: none;
+    }
+    .login-form button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00ffcc;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      color: black;
+    }
+    .login-form button:hover {
+      background-color: #00cc99;
+    }
+
+    .login-options {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .login-options a {
+      display: block;
+      color: #00ffcc;
+      text-decoration: none;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .login-options a:hover {
+      color: #99ffee;
+      text-decoration: underline;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0; top: 0; width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.7);
+    }
+    .modal-content {
+      background-color: #222;
+      margin: 8% auto;
+      padding: 20px;
+      width: 380px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #00ffcc;
+      color: #fff;
+    }
+    .modal-content h3 {
+      color: #99ffee;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .modal-content input,
+    .modal-content select,
+    .modal-content button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 8px 0;
+      border: none;
+      background-color: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+    .modal-content input[type="radio"] {
+      width: auto;
+      margin-right: 8px;
+    }
+    .modal-content label { display: block; margin-top: 10px; }
+    .modal-content button {
+      background-color: #00ffcc;
+      cursor: pointer;
+      color: black;
+    }
+    .modal-content button:hover { background-color: #00cc99; }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #1a1a1a;
+      color: #00ffcc;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div style="display: flex; align-items: center;">
+    <img src="logo.png" alt="Logo" />
+    <span class="title">SoundMax Store</span>
+
+}
+
+}
+
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#" onclick="openModal('productModal')">Products</a></li>
+    <li><a href="#" onclick="openModal('offersModal')">Offers</a></li>
+    <li><a href="#" onclick="openModal('contactModal')">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- LANDING TEXT -->
+<div class="landing-text">
+  <h1>Experience Premium Sound</h1>
+  <p>Discover our collection of smart wireless headphones with crystal-clear audio, noise cancellation, and all-day comfort. Perfect for music, calls, and gaming.</p>
+</div>
+
+<!-- LOGIN FORM -->
+<div class="login-form">
+  <h2>Member Login</h2>
+  <form>
+    <input type="text" placeholder="Username" required />
+    <input type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+
+  <div class="login-options">
+    <a href="#" onclick="openModal('guestModal')">Login as Guest</a>
+    <a href="#" onclick="openModal('createModal')">Create New Account</a>
+    <a href="#" onclick="openModal('forgotModal')">Forgot Password?</a>
+  </div>
+</div>
+
+<!-- MODALS (Guest, Create, Forgot, Product, Offers, Contact) -->
+<div id="guestModal" class="modal">
+  <div class="modal-content">
+    <h3>Welcome, Guest!</h3>
+    <p>You are logged in as a guest. Some features may be limited.</p>
+    <button onclick="closeModal('guestModal')">OK</button>
+  </div>
+</div>
+
+<div id="createModal" class="modal">
+  <div class="modal-content">
+    <h3>Create New Account</h3>
+    <input type="text" placeholder="New Username" />
+    <input type="email" placeholder="Email" />
+    <input type="password" placeholder="Password" />
+    <button>Create Account</button>
+    <button onclick="closeModal('createModal')">Cancel</button>
+  </div>
+</div>
+
+<div id="forgotModal" class="modal">
+  <div class="modal-content">
+    <h3>Forgot Password</h3>
+    <input type="email" placeholder="Enter registered email" />
+    <button>Send Reset Link</button>
+    <button onclick="closeModal('forgotModal')">Cancel</button>
+  </div>
+</div>
+
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <h3>Select Your Product</h3>
+    <label for="product">Choose Headphone Model:</label>
+    <select id="product" onchange="updatePrice()">
+      <option value="">-- Select --</option>
+      <option value="basic">SoundMax Basic</option>
+      <option value="pro">SoundMax Pro</option>
+      <option value="ultra">SoundMax Ultra</option>
+    </select>
+    <div id="priceOutput" style="margin-top: 10px; font-weight: bold;">Price: ₹0</div>
+    <button onclick="closeModal('productModal')">Close</button>
+  </div>
+</div>
+
+<div id="offersModal" class="modal">
+  <div class="modal-content">
+    <h3>Exclusive August Offers</h3>
+    <ul style="padding-left: 20px; list-style-type: disc;">
+      <li>20% OFF on SoundMax Ultra</li>
+      <li>Free carrying case with SoundMax Pro</li>
+      <li>Buy 1 Get 1 at 50% OFF on SoundMax Basic</li>
+    </ul>
+    <button onclick="closeModal('offersModal')">Close</button>
+  </div>
+</div>
+
+<div id="contactModal" class="modal">
+  <div class="modal-content">
+    <h3>Contact Us</h3>
+    <p><strong>Phone:</strong> +91 98765 43210</p>
+    <p><strong>Email:</strong> support@soundmaxstore.com</p>
+    <button onclick="closeModal('contactModal')">Close</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 SoundMax Store | All Rights Reserved
+</footer>
+
+<!-- SCRIPT -->
+<script>
+  function openModal(id) {
+    document.getElementById(id).style.display = "block";
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+      if (event.target === modal) modal.style.display = "none";
+    });
+  }
+
+  function updatePrice() {
+    const product = document.getElementById("product").value;
+    let price = 0;
+    if (product === "basic") price = 2999;
+    else if (product === "pro") price = 5999;
+    else if (product === "ultra") price = 9999;
+    document.getElementById("priceOutput").innerText = "Price: ₹" + price;
+  }
+</script>
+
+</body>
+</html>
